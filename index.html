@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+h1{
+    text-align: center;
+   margin-top: 10%;
+}
+p{
+    text-align: center;
+    font-size: 50px;
+}
+.div1
+{
+    text-align: center;
+    margin-top: 10%;
+}
+
+</style>
+<body>
+    <p>Guess ME!!!</p>
+    <div class="div1">
+   <input type="number" placeholder="Enter a Number" id="num"  style="border:none;">
+    <button type="button" class="btn btn-outline-warning text-center" id="btn1" onclick="check()">Start Again!!</button>
+    <button type="button" class="btn btn-outline-warning" onclick="check()" id="btn2">Check</button>
+    </div>
+
+    <h1 id="demo"></h1>
+</body>
+<script>
+    btn1.style.visibility="hidden";
+   function gameover()
+   {
+    btn1.style.visibility="visible";
+    btn2.style.visibility="hidden";
+    num.style.visibility="hidden";
+    
+   }
+    function check()
+    {
+       
+        btn1.style.visibility="hidden";
+    btn2.style.visibility="visible";
+    num.style.visibility="visible";
+        function myDisplayer(some) {
+  document.getElementById("demo").innerHTML = some;
+}
+        var points=0;
+    var uservalue=document.getElementById("num").value;
+    if(uservalue=="")
+    {
+        alert("Enter a Value");
+    }
+    else
+    if(uservalue<0 || uservalue>6)
+    {
+        alert("Enter a Value between 1-6");
+    }
+    else{
+
+    
+    var systemvalue=Math.floor((Math.random()*6)+1);
+
+    console.log(uservalue);
+    console.log(systemvalue);
+    
+let myPromise = new Promise(function(myResolve, myReject) {
+
+// The producing code (this may take some time)
+
+  if (uservalue==systemvalue) {
+    points+=2;
+    myResolve(points+" Points"+"<br>"+" Congratulations Value Matched!!");
+    console.log("Points");
+    console.log(points);
+    gameover();
+    points=0;
+  } else 
+  if(Math.abs(uservalue-systemvalue)==1){
+    points+=1;
+    myReject(points+" Points"+"<br>"+" You Were So Close");
+    console.log("Points");
+    console.log(points);
+    points=0;
+  }
+  else{
+      points=0;
+      myReject(points+" Points"+"<br>"+" Nothing Scored");
+      points=0;
+  }
+});
+
+myPromise.then(
+  function(value) {myDisplayer(value);},
+  function(error) {myDisplayer(error);}
+);
+
+    }
+    }
+</script>
+</html>
